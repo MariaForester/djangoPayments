@@ -10,6 +10,8 @@ from rest_framework import viewsets, views
 from rest_framework.response import Response
 import string
 
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 from .models import Users, Wallets, Transactions
 from .serializers import UserSerializer, WalletSerializer, TransactionSerializer
 from .forms import UserRegistrationForm
@@ -92,7 +94,8 @@ class UserPersonalUseView(views.APIView):
 
 
 class WalletView(views.APIView):
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JSONWebTokenAuthentication]
 
     def get(self, request):
         '''if not request.user.is_authenticated:
