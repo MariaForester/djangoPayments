@@ -18,38 +18,6 @@ from .forms import LoginForm
 DEFAULT_SUM = 100
 
 
-'''def register(request):
-    if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False) #не сохраняем автоматически данные формы
-            new_user.set_password(user_form.cleaned_data['password'])
-            new_user.save()
-            return HttpResponseRedirect('http://127.0.0.1:9091/')
-    else:
-        user_form = UserRegistrationForm()
-    return render(request, 'register.html', {'user_form': user_form})
-
-
-def user_login(request):
-    if request.method == 'POST':
-        login_form = LoginForm(request.POST)
-        if login_form.is_valid():
-            cd = login_form.cleaned_data
-            user = authenticate(username=cd['username'], password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponseRedirect('http://127.0.0.1:9091/')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
-    else:
-        form = LoginForm()
-    return render(request, 'login.html', {'form': form})'''
-
-
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = Users.objects.all()
@@ -92,7 +60,7 @@ class UserPersonalUseView(views.APIView):
 
 
 class WalletView(views.APIView):
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         '''if not request.user.is_authenticated:

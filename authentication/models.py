@@ -39,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.username
 
-    @property
+    '''@property
     def token(self):
         return self._generate_jwt_token() #Позволяет получить токен пользователя путем вызова user.token
 
@@ -58,3 +58,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token
+'''
