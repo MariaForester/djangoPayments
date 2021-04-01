@@ -1,20 +1,14 @@
 from rest_framework import serializers
 
-from payments.models import Users, Wallets, Transactions
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Users
-        fields = ('id', 'user_name', 'user_password', 'wallets')
+from payments.models import Wallets, Transactions
 
 
 class WalletSerializer(serializers.ModelSerializer):
-    user_name = serializers.RelatedField(many=False, read_only=True)
+    username = serializers.RelatedField(many=False, read_only=True)
 
     class Meta:
         model = Wallets
-        fields = ('id', 'wallet_num', 'wallet_sum', 'user_id', 'user_name')
+        fields = ('id', 'wallet_num', 'wallet_sum', 'user_id', 'username')
 
 
 class TransactionSerializer(serializers.ModelSerializer):
