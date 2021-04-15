@@ -7,8 +7,8 @@ app_name = 'payments'
 
 router = DefaultRouter()
 
-router.register(f'walletsViewSet', WalletViewSet)
-router.register(f'transactionViewSet', TransactionViewSet)
+'''router.register(f'walletsViewSet', WalletViewSet)
+router.register(f'transactionViewSet', TransactionViewSet)'''
 
 urlpatterns = router.urls + [
     path('account/', UserPersonalUseView.as_view()),
